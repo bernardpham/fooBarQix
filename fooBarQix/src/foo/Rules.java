@@ -23,16 +23,23 @@ More details:
 * 27 is divisible by 3 and contains 7, so we print "FooQix"
 **/	
 	
+	public static final int THREE = 3;
+	public static final int FIVE = 5;
+	public static final int SEVEN = 7;
+	
 	private Rules() {}
 	
 	public static boolean isDivibleBy(int numberToTest, int numerator) {
-		return numberToTest%numerator == 0;
+		return numberToTest!=0 && numberToTest%numerator == 0;
 	}
 	
 	public static boolean containsNumber(int numberToTest, int numberToFind) {
 		String numberToTestToString = String.valueOf(numberToTest);
-		return numberToTestToString.contains(String.valueOf(numberToTest));
+		return numberToTestToString.contains(String.valueOf(numberToFind));
 	}
 
-	
+	public static String replace(int numberToTest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
