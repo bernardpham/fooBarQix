@@ -29,24 +29,19 @@ Example: 1 2 FooFoo 4 BarBar Foo Qix 8 Foo Bar
 		Assert.assertEquals(true, Rules.isDivibleBy(5555, Rules.FIVE));
 		Assert.assertEquals(false, Rules.isDivibleBy(354, Rules.FIVE));
 		Assert.assertEquals(false, Rules.isDivibleBy(0, Rules.FIVE));
-		
-		Assert.assertEquals(true, Rules.isDivibleBy(7, Rules.SEVEN));
-		Assert.assertEquals(true, Rules.isDivibleBy(49, Rules.SEVEN));
-		Assert.assertEquals(false, Rules.isDivibleBy(354, Rules.SEVEN));
-		Assert.assertEquals(false, Rules.isDivibleBy(0, Rules.SEVEN));
 	}
 	
 	@org.junit.Test
 	public void testContains() {
-		Assert.assertEquals(true, Rules.containsNumber(3, Rules.THREE));
-		Assert.assertEquals(true, Rules.containsNumber(31, Rules.THREE));
-		Assert.assertEquals(false, Rules.containsNumber(5, Rules.THREE));
-		Assert.assertEquals(false, Rules.containsNumber(0, Rules.THREE));
+		Assert.assertEquals(1, Rules.containsNumber(3, Rules.THREE_CHAR));
+		Assert.assertEquals(2, Rules.containsNumber(313, Rules.THREE_CHAR));
+		Assert.assertEquals(0, Rules.containsNumber(5, Rules.THREE_CHAR));
+		Assert.assertEquals(0, Rules.containsNumber(0, Rules.THREE_CHAR));
 		
-		Assert.assertEquals(true, Rules.containsNumber(5, Rules.FIVE));
-		Assert.assertEquals(true, Rules.containsNumber(51, Rules.FIVE));
-		Assert.assertEquals(false, Rules.containsNumber(374, Rules.FIVE));
-		Assert.assertEquals(false, Rules.containsNumber(0, Rules.FIVE));
+		Assert.assertEquals(1, Rules.containsNumber(5, Rules.FIVE_CHAR));
+		Assert.assertEquals(2, Rules.containsNumber(515, Rules.FIVE_CHAR));
+		Assert.assertEquals(0, Rules.containsNumber(374, Rules.FIVE_CHAR));
+		Assert.assertEquals(0, Rules.containsNumber(0, Rules.FIVE_CHAR));
 	}
 	
 	/**

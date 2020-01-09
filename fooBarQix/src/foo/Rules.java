@@ -24,8 +24,10 @@ More details:
 **/	
 	
 	public static final int THREE = 3;
+	public static final char THREE_CHAR = '3';
 	public static final int FIVE = 5;
-	public static final int SEVEN = 7;
+	public static final char FIVE_CHAR = '5';
+	public static final char SEVEN_CHAR = '7';
 	
 	private Rules() {}
 	
@@ -33,13 +35,48 @@ More details:
 		return numberToTest!=0 && numberToTest%numerator == 0;
 	}
 	
-	public static boolean containsNumber(int numberToTest, int numberToFind) {
-		String numberToTestToString = String.valueOf(numberToTest);
-		return numberToTestToString.contains(String.valueOf(numberToFind));
-	}
+//	public static boolean containsNumber(int numberToTest, int numberToFind) {
+//		String numberToTestToString = String.valueOf(numberToTest);
+//		return numberToTestToString.contains(String.valueOf(numberToFind));
+//	}
 
+	public static int containsNumber(int numberToTest, char numberToFind) {
+		String numberToTestToString = String.valueOf(numberToTest);
+		int numberOfOccurence = 0;
+		
+		for(int i = 0; i < numberToTestToString.length(); i++) {
+			if(numberToTestToString.charAt(i) == numberToFind) {
+				numberOfOccurence++;
+			}
+		}
+		
+		return numberOfOccurence;
+	}
+	
 	public static String replace(int numberToTest) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		StringBuilder value = new StringBuilder();
+		
+		if(isDivibleBy(numberToTest, THREE)) {
+			value.append("Foo");
+		}
+		
+		if(isDivibleBy(numberToTest, FIVE)) {
+			value.append("Bar");
+		}
+		
+		for(int i = 0; i < containsNumber(numberToTest, THREE_CHAR); i++) {
+			value.append("Foo");
+		}
+		
+		for(int i = 0; i < containsNumber(numberToTest, FIVE_CHAR); i++) {
+			value.append("Bar");
+		}
+		
+		for(int i = 0; i < containsNumber(numberToTest, SEVEN_CHAR); i++) {
+			value.append("Qix");
+		}
+		
+		return String.valueOf(value);
 	}
 }
