@@ -7,14 +7,14 @@ public class Test {
 	/**
 	 * FooBarQix Kata
 
-Write a program that prints numbers from 1 to 100, one number per line. For each printed number, use the following rules:
-
-if the number is divisible by 3 or contains 3, replace 3 by "Foo";
-if the number is divisible by 5 or contains 5, replace 5 by "Bar";
-if the number contains 7, replace by "Qix";
-
-Example: 1 2 FooFoo 4 BarBar Foo Qix 8 Foo Bar
-**/
+		Write a program that prints numbers from 1 to 100, one number per line. For each printed number, use the following rules:
+		
+		if the number is divisible by 3 or contains 3, replace 3 by "Foo";
+		if the number is divisible by 5 or contains 5, replace 5 by "Bar";
+		if the number contains 7, replace by "Qix";
+		
+		Example: 1 2 FooFoo 4 BarBar Foo Qix 8 Foo Bar
+	 **/
 
 	
 	@org.junit.Test
@@ -33,15 +33,11 @@ Example: 1 2 FooFoo 4 BarBar Foo Qix 8 Foo Bar
 	
 	@org.junit.Test
 	public void testContains() {
-		Assert.assertEquals(1, Rules.containsNumber(3, Rules.THREE_CHAR));
-		Assert.assertEquals(2, Rules.containsNumber(313, Rules.THREE_CHAR));
-		Assert.assertEquals(0, Rules.containsNumber(5, Rules.THREE_CHAR));
-		Assert.assertEquals(0, Rules.containsNumber(0, Rules.THREE_CHAR));
-		
-		Assert.assertEquals(1, Rules.containsNumber(5, Rules.FIVE_CHAR));
-		Assert.assertEquals(2, Rules.containsNumber(515, Rules.FIVE_CHAR));
-		Assert.assertEquals(0, Rules.containsNumber(374, Rules.FIVE_CHAR));
-		Assert.assertEquals(0, Rules.containsNumber(0, Rules.FIVE_CHAR));
+		Assert.assertEquals(Rules.FOO, Rules.containsNumber(3));
+		Assert.assertEquals(Rules.FOO + Rules.FOO, Rules.containsNumber(313));
+		Assert.assertEquals(Rules.BAR, Rules.containsNumber(5));
+		Assert.assertEquals("", Rules.containsNumber(0));
+		Assert.assertEquals(Rules.BAR + Rules.BAR, Rules.containsNumber(515));
 	}
 	
 	/**

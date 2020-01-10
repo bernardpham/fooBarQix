@@ -2,32 +2,15 @@ package foo;
 
 public class Rules {
 
-	/**
-	 * FooBarQix Kata
-
-Write a program that prints numbers from 1 to 100, one number per line. For each printed number, use the following rules:
-
-if the number is divisible by 3 or contains 3, replace 3 by "Foo";
-if the number is divisible by 5 or contains 5, replace 5 by "Bar";
-if the number contains 7, replace by "Qix";
-
-Example: 1 2 FooFoo 4 BarBar Foo Qix 8 Foo Bar
-
-More details:
-
-* divisors have high precedence, ex: 51 -> FooBar
-* the content is analysed in the order they appear, ex: 53 -> BarFoo
-* 13 contains 3 so we print "Foo"
-* 15 is divisible by 3 and 5 and contains 5, so we print “FooBarBar”
-* 33 contains 3 two times and is divisible by 3, so we print “FooFooFoo”
-* 27 is divisible by 3 and contains 7, so we print "FooQix"
-**/	
-	
 	public static final int THREE = 3;
 	public static final char THREE_CHAR = '3';
 	public static final int FIVE = 5;
 	public static final char FIVE_CHAR = '5';
 	public static final char SEVEN_CHAR = '7';
+	
+	public static final String FOO = "Foo";
+	public static final String BAR = "Bar";
+	public static final String QIX = "Qix";
 	
 	private Rules() {}
 	
@@ -35,48 +18,64 @@ More details:
 		return numberToTest!=0 && numberToTest%numerator == 0;
 	}
 	
-//	public static boolean containsNumber(int numberToTest, int numberToFind) {
-//		String numberToTestToString = String.valueOf(numberToTest);
-//		return numberToTestToString.contains(String.valueOf(numberToFind));
-//	}
-
-	public static int containsNumber(int numberToTest, char numberToFind) {
-		String numberToTestToString = String.valueOf(numberToTest);
-		int numberOfOccurence = 0;
+	public static String isDivibleBy(int numberToTest) {
+		StringBuilder s = new StringBuilder();
 		
-		for(int i = 0; i < numberToTestToString.length(); i++) {
-			if(numberToTestToString.charAt(i) == numberToFind) {
-				numberOfOccurence++;
-			}
+		if(isDivibleBy(numberToTest, THREE)) {
+			s.append(FOO);
 		}
 		
-		return numberOfOccurence;
+		if(isDivibleBy(numberToTest, FIVE)) {
+			s.append(BAR);
+		}
+		
+		return String.valueOf(s);
+	}
+	
+	public static String containsNumber(int numberToTest) {
+		
+		String numberToTestToString = String.valueOf(numberToTest);
+		StringBuilder s = new StringBuilder();
+		
+		for(int i = 0; i < numberToTestToString.length(); i++) {
+			
+			switch (numberToTestToString.charAt(i)) {
+			case THREE_CHAR:
+				s.append(FOO);
+				break;
+			case FIVE_CHAR:
+				s.append(BAR);
+				break;
+			case SEVEN_CHAR:
+				s.append(QIX);
+				break;
+			default:
+				break;
+			}
+		}
+		return String.valueOf(s);
 	}
 	
 	public static String replace(int numberToTest) {
 		
-		StringBuilder value = new StringBuilder();
+		StringBuilder replacementValue = new StringBuilder();
 		
-		if(isDivibleBy(numberToTest, THREE)) {
-			value.append("Foo");
+		String divisibleValue = isDivibleBy(numberToTest);
+
+		if(!divisibleValue.isEmpty()) {
+			replacementValue.append(divisibleValue);
 		}
 		
-		if(isDivibleBy(numberToTest, FIVE)) {
-			value.append("Bar");
+		String containsValue = containsNumber(numberToTest);
+		
+		if(!containsValue.isEmpty()) {
+			replacementValue.append(containsValue);
+		} 
+		
+		if(divisibleValue.isEmpty() && containsValue.isEmpty()) {
+			replacementValue.append(numberToTest);
 		}
 		
-		for(int i = 0; i < containsNumber(numberToTest, THREE_CHAR); i++) {
-			value.append("Foo");
-		}
-		
-		for(int i = 0; i < containsNumber(numberToTest, FIVE_CHAR); i++) {
-			value.append("Bar");
-		}
-		
-		for(int i = 0; i < containsNumber(numberToTest, SEVEN_CHAR); i++) {
-			value.append("Qix");
-		}
-		
-		return String.valueOf(value);
+		return String.valueOf(replacementValue);
 	}
 }
